@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens — Organic Tech Minimalist ────────────────────────────── */
+:root {
+  /* Velvet dark canvas */
+  --canvas-base:   #0b0f19;
+  --canvas-raised: #131926;
+  --canvas-muted:  #1a2235;
+
+  /* Legacy aliases kept for components still referencing them */
+  --color-navy:      #1b2a47;
+  --color-navy-dark: #0b0f19;
+  --color-navy-mid:  #131926;
+  --color-cyan:      #38bdf8; /* muted sky-blue — NOT neon */
+  --color-cyan-glow: #0ea5e9;
+  --color-white:     #ffffff;
+  --color-off-white: #f1f5f9;
+
+  --font-sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--canvas-base);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Scrollbar — thin, muted ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* ─── Typography Hierarchy ────────────────────────────────────────────────── */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #ffffff;
+}
+.heading-display strong,
+.heading-display b {
+  font-weight: 900;
+}
+
+/* Satin silver gradient — replaces loud neon text */
+.gradient-text {
+  background: linear-gradient(160deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Soft blue accent gradient (only for deliberate accent words) */
+.gradient-text-accent {
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism — matte, low-opacity ─────────────────────────────────── */
+.glass {
+  background: rgba(19, 25, 38, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.glass-card {
+  background: rgba(19, 25, 38, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.glass-card:hover {
+  background: rgba(26, 34, 53, 0.7);
+  border-color: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 32px 64px -16px rgba(0,0,0,0.6);
+}
+
+/* ─── Buttons — matte, structural ────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.25rem;
+  background: #ffffff;
+  color: #0b0f19;
+  font-weight: 800;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.25rem;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.2);
+  color: #ffffff;
+}
+
+/* ─── Section Label / Eyebrow ────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ─── Nav Link ───────────────────────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: color 0.25s;
+}
+.nav-link:hover { color: #ffffff; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: rgba(255,255,255,0.4);
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  33%      { transform: translateY(-14px) rotate(0.5deg); }
+  66%      { transform: translateY(-6px) rotate(-0.5deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-float     { animation: float 8s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 24s linear infinite; }
+.animate-marquee   { animation: marquee 32s linear infinite; }
+
+/* ─── Tech Scroll ─────────────────────────────────────────────────────────── */
+.tech-scroll-container { overflow: hidden; position: relative; }
+.tech-scroll-track     { display: flex; width: max-content; }
+
+/* ─── Form Inputs — matte dark ───────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.75rem;
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.25); }
+.form-input:focus {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+}
+
+/* ─── Stat Number ─────────────────────────────────────────────────────────── */
+.stat-number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+/* ─── Grid Utilities ──────────────────────────────────────────────────────── */
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .grid-responsive-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-responsive-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-responsive-2 { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 640px) {
+  .grid-responsive-3 { grid-template-columns: 1fr; }
+  .grid-responsive-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-responsive-2 { grid-template-columns: 1fr; gap: 2rem; }
+  .btn-primary, .btn-outline { padding: 0.75rem 1.5rem; font-size: 0.85rem; }
+}
+
+/* ─── Hero Canvas ─────────────────────────────────────────────────────────── */
+.hero-canvas-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 100%;
+  z-index: 0;
+}
+@media (max-width: 1024px) {
+  .hero-canvas-wrap { width: 100%; left: 0; opacity: 0.4; }
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-scroll-indicator { display: none; }
+  .work-card-visual { min-height: 220px !important; order: 0 !important; }
+  .work-card-text   { order: 1 !important; padding: 1.5rem !important; }
+}
